@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<title>Du bist klein</title>
+<style>
+  body { font-family: sans-serif; padding: 2rem; }
+  .popup {
+    position: fixed;
+    background: #fff3cd; border: 2px solid #ffc107; padding: 1rem;
+    box-shadow: 0 4px 12px rgba(0,0,0,.2); z-index: 999;
+    cursor: pointer;
+  }
+</style>
+</head>
+<body>
+<p>Warte kurz …</p>
+
+<script>
+function startSimulation() {
+  const maxPopups = 50000;
+  let popups = 0;
+  const popupInterval = setInterval(() => {
+    const p = document.createElement('div');
+    p.className = 'popup';
+    p.textContent = 'Popo du bist klein   ';
+    p.style.top = (1 + Math.random() * 100) + '%';
+    p.style.left = (1 + Math.random() * 100) + '%';
+    p.onclick = () => p.remove();
+    document.body.appendChild(p);
+    if (popups >= maxPopups) clearInterval(popupInterval);
+  }, 0.1);
+}
+
+setTimeout(() => {
+  console.log("Diese Aktion startet nach 0.5 Sekunden");
+  startSimulation();
+}, 500);
+</script>
+</body>
+</html>
+
